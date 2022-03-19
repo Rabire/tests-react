@@ -12,9 +12,7 @@
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
-    "ecmaFeatures": {
-      "jsx": true
-    },
+    "ecmaFeatures": { "jsx": true },
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
@@ -26,8 +24,6 @@
     "react/react-in-jsx-scope": "off"
   },
   "settings": {
-    "import/resolver": {
-      "typescript": {}
-    }
+    "import/resolver": { "typescript": {} }
   }
 }

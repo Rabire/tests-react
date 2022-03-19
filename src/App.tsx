@@ -1,9 +1,14 @@
+import { CssReset, Theme } from 'styles/globals';
+
 function App() {
   return (
-    <div>
+    <>
+      <CssReset />
+      <Theme />
+
       <h1>App</h1>
-      <p>coucou</p>
-    </div>
+      <p>Hello world</p>
+    </>
   );
 }
 
