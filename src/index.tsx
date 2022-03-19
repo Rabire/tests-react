@@ -1,7 +1,7 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import App from "./App";
-import { CssReset, Theme } from "styles/globals";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { CssReset, Theme } from 'styles/globals';
+import App from './App';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -9,5 +9,5 @@ ReactDOM.render(
     <Theme />
     <App />
   </React.StrictMode>,
-  document.getElementById("root")
+  document.getElementById('root')
 );
