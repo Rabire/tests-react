@@ -1,8 +1,12 @@
 import { createGlobalStyle } from "styled-components";
 import { Color, Font, FontSize, FontWeight } from "./theme";
 
-export const GlobalStyle = createGlobalStyle`
-/* CSS RESET */
+export const Theme = createGlobalStyle`
+/* THEME */
+
+`;
+
+export const CssReset = createGlobalStyle`
 * {
     box-sizing: border-box;
     padding: 0;
