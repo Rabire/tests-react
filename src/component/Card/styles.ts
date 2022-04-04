@@ -1,25 +1,29 @@
 import styled from 'styled-components';
-import { FontSize } from 'styles/theme';
+import createShimmer from 'styles/shimmer';
+import { Color, FontSize } from 'styles/theme';
 
 export const CardBox = styled.div`
-  background: lightgreen;
+  background: ${Color.UtilityLight};
 
+  .loading-img,
   img {
     height: 20rem;
     width: 100%;
-    object-fit: cover;
+    ${createShimmer('100%', '')}
   }
 `;
 
-type Props = {
-  isLoading: boolean;
-};
-
-export const Content = styled.div<Props>`
+export const Content = styled.div<{ isLoading: boolean }>`
   margin: 1rem;
 
   h3 {
       font-size ${FontSize.Title};
+      margin-bottom: 0.5rem;
+      ${(props) => props.isLoading && createShimmer('70%')}
+  }
+
+  p {
+      ${(props) => props.isLoading && createShimmer('100%')}
   }
 
 `;
