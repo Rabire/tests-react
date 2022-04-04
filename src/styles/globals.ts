@@ -18,7 +18,7 @@ export const CssReset = createGlobalStyle`
 }
 
 html {
-  font-size: 1rem;
+    font-size: 62.5%;
 }
 
 body {

@@ -10,12 +10,12 @@ export enum Color {
 }
 
 export enum FontSize {
-  /** 20px */
-  Small = '0.75rem',
-  /** 25px - default */
-  Regular = '1rem',
-  /** 50px */
-  Title = '1.5rem'
+  /** 12px */
+  Small = '1.2rem',
+  /** 16px - default */
+  Regular = '1.6rem',
+  /** 24px */
+  Title = '2.4rem'
 }
 
 export enum FontWeight {
