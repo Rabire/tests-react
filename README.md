@@ -1,7 +1,4 @@
-<!-- FIXME: -->
-<!-- Change the project name here, in the package.json and index.html files -->
-
-# PROJECT NAME
+# tests-react
 
 ### `npm i`
 
