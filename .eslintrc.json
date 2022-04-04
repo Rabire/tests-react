@@ -20,9 +20,9 @@
   "rules": {
     "import/extensions": ["error", "ignorePackages", { "ts": "never", "tsx": "never" }],
     "import/no-unresolved": "off",
+    "import/prefer-default-export": "off",
     "no-shadow": "off",
     "react/jsx-filename-extension": [1, { "extensions": [".tsx"] }],
-    "import/prefer-default-export": "off",
     "react/react-in-jsx-scope": "off"
   },
   "settings": {
