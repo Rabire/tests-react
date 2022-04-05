@@ -13,9 +13,6 @@ export function ZoomSection() {
   window.onscroll = () => isHover && window.scrollTo(0, 0); // DISABLE SCROLL
 
   useEffect(() => {
-    const handleClickStart = () => setIsClicking(true);
-    const handleClickEnd = () => setIsClicking(false);
-
     const handleZoom = (e: WheelEvent) => {
       if (e.deltaY > 0) return setZoom((prev) => prev - 0.1);
       return setZoom((prev) => prev + 0.1);
@@ -31,14 +28,10 @@ export function ZoomSection() {
       });
     };
 
-    wrapper?.current?.addEventListener('mousedown', handleClickStart); // HANDLE CLICK
-    wrapper?.current?.addEventListener('mouseup', handleClickEnd); // HANDLE CLICK
     wrapper?.current?.addEventListener('mousemove', handleMove); // HANDLE MOVE
     wrapper?.current?.addEventListener('wheel', handleZoom); // HANDLE ZOOM
 
     return () => {
-      wrapper?.current?.removeEventListener('mousedown', handleClickStart); // HANDLE CLICK
-      wrapper?.current?.removeEventListener('mouseup', handleClickEnd); // HANDLE CLICK
       wrapper?.current?.removeEventListener('mousemove', handleMove); // HANDLE MOVE
       wrapper?.current?.removeEventListener('wheel', handleZoom); // HANDLE ZOOM
     };
@@ -49,7 +42,9 @@ export function ZoomSection() {
       <MapWrapper
         ref={wrapper}
         onMouseEnter={() => setIsHover(true)}
-        onMouseLeave={() => setIsHover(false)}>
+        onMouseLeave={() => setIsHover(false)}
+        onMouseDown={() => setIsClicking(true)}
+        onMouseUp={() => setIsClicking(false)}>
         <France
           style={{ transform: `scale(${zoom}) translate(${position[0]}px, ${position[1]}px)` }}
         />
