@@ -1,4 +1,5 @@
 import { QueryClientProvider, QueryClient } from 'react-query';
+import { ZoomSection } from 'component/ZoomSection';
 import { Hero } from 'component/Hero';
 import { Sections } from 'component/Sections';
 import { CardList } from 'component/CardList';
@@ -11,6 +12,8 @@ function App() {
     <>
       <CssReset />
       <Theme />
+
+      <ZoomSection />
 
       <Hero />
 
