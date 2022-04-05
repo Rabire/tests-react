@@ -1,4 +1,5 @@
 import { QueryClientProvider, QueryClient } from 'react-query';
+import { Hero } from 'component/Hero';
 import { Sections } from 'component/Sections';
 import { CardList } from 'component/CardList';
 import { CssReset, Theme } from 'styles/globals';
@@ -10,6 +11,8 @@ function App() {
     <>
       <CssReset />
       <Theme />
+
+      <Hero />
 
       <Sections />
 
