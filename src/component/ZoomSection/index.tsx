@@ -10,7 +10,7 @@ export function ZoomSection() {
   const [isClicking, setIsClicking] = useState(false);
   const [isHover, setIsHover] = useState(false);
 
-  window.onscroll = () => isHover && window.scrollTo(0, 0); // DISABLE SCROLL
+  window.onscroll = () => isHover && window.scrollTo(0, 0); // DISABLE SCROLL TODO: find another way
 
   const handleMove = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     if (!isClicking) return;
