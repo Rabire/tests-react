@@ -8,38 +8,31 @@ export function ZoomSection() {
 
   console.log({ isClicking });
 
-  /* HANDLE ZOOM */
-  const onZoom = (e: WheelEvent) => {
-    e.preventDefault();
-    if (e.deltaY > 0) {
-      setZoom((prev) => prev - 0.3);
-    } else {
-      setZoom((prev) => prev + 0.3);
-    }
-  };
+  window.onscroll = () => window.scrollTo(0, 0); // DISABLE SCROLL
 
-  useEffect(() => {
-    document.addEventListener('wheel', onZoom);
-
-    return () => {
-      document.removeEventListener('wheel', onZoom);
-    };
-  }, []);
-
-  /* DISABLE SCROLL */
-  window.onscroll = () => window.scrollTo(0, 0);
-
-  /* HANDLE MOVE */
   useEffect(() => {
     const handleClickStart = () => setIsClicking(true);
     const handleClickEnd = () => setIsClicking(false);
 
-    document.addEventListener('mousedown', handleClickStart);
-    document.addEventListener('mouseup', handleClickEnd);
+    const handleZoom = (e: WheelEvent) => {
+      e.preventDefault();
+      if (e.deltaY > 0) {
+        setZoom((prev) => prev - 0.3);
+      } else {
+        setZoom((prev) => prev + 0.3);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickStart); // HANDLE CLICK
+    document.addEventListener('mouseup', handleClickEnd); // HANDLE CLICK
+
+    document.addEventListener('wheel', handleZoom); // HANDLE ZOOM
 
     return () => {
-      document.removeEventListener('mousedown', handleClickStart);
-      document.removeEventListener('mouseup', handleClickEnd);
+      document.removeEventListener('mousedown', handleClickStart); // HANDLE CLICK
+      document.removeEventListener('mouseup', handleClickEnd); // HANDLE CLICK
+
+      document.removeEventListener('wheel', handleZoom); // HANDLE ZOOM
     };
   }, []);
 
