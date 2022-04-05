@@ -4,6 +4,9 @@ import { ComponentBox, MapWrapper } from './styles';
 
 export function ZoomSection() {
   const [zoom, setZoom] = useState(1);
+  const [isClicking, setIsClicking] = useState(false);
+
+  console.log({ isClicking });
 
   /* HANDLE ZOOM */
   const onZoom = (e: WheelEvent) => {
@@ -17,15 +20,28 @@ export function ZoomSection() {
 
   useEffect(() => {
     document.addEventListener('wheel', onZoom);
+
     return () => {
       document.removeEventListener('wheel', onZoom);
     };
   }, []);
 
   /* DISABLE SCROLL */
-  const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-  const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
-  window.onscroll = () => window.scrollTo(scrollLeft, scrollTop);
+  window.onscroll = () => window.scrollTo(0, 0);
+
+  /* HANDLE MOVE */
+  useEffect(() => {
+    const handleClickStart = () => setIsClicking(true);
+    const handleClickEnd = () => setIsClicking(false);
+
+    document.addEventListener('mousedown', handleClickStart);
+    document.addEventListener('mouseup', handleClickEnd);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickStart);
+      document.removeEventListener('mouseup', handleClickEnd);
+    };
+  }, []);
 
   return (
     <ComponentBox>

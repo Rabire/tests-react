@@ -7,4 +7,5 @@ export const ComponentBox = styled.section`
 
 export const MapWrapper = styled.div`
   background: pink;
+  overflow: hidden;
 `;
