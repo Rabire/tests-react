@@ -9,9 +9,12 @@ export function CardList() {
 
   return (
     <CardsList>
+      <Card isLoading />
+      <Card isLoading />
+
       {isLoading
         ? // eslint-disable-next-line react/no-array-index-key
-          Array(5).map((_, i) => <Card key={i} isLoading />)
+          Array(3).map((_, i) => <Card key={i} isLoading />)
         : cards.map((card: CardType) => <Card key={card.id} card={card} isLoading={false} />)}
     </CardsList>
   );
