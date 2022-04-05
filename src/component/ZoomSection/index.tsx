@@ -1,8 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { ReactComponent as France } from 'assets/france1.svg';
 import { ComponentBox, MapWrapper } from './styles';
 
 export function ZoomSection() {
+  const wrapper = useRef<HTMLDivElement>(null);
+
   const [zoom, setZoom] = useState(1);
   const [isClicking, setIsClicking] = useState(false);
 
@@ -15,22 +17,20 @@ export function ZoomSection() {
     const handleClickEnd = () => setIsClicking(false);
 
     const handleZoom = (e: WheelEvent) => {
-      e.preventDefault();
-      if (e.deltaY > 0) {
-        setZoom((prev) => prev - 0.3);
-      } else {
-        setZoom((prev) => prev + 0.3);
-      }
+      if (e.deltaY > 0) return setZoom((prev) => prev - 0.1);
+      return setZoom((prev) => prev + 0.1);
     };
 
-    document.addEventListener('mousedown', handleClickStart); // HANDLE CLICK
-    document.addEventListener('mouseup', handleClickEnd); // HANDLE CLICK
+    if (wrapper.current) {
+      wrapper.current.addEventListener('mousedown', handleClickStart); // HANDLE CLICK
+      wrapper.current.addEventListener('mouseup', handleClickEnd); // HANDLE CLICK
 
-    document.addEventListener('wheel', handleZoom); // HANDLE ZOOM
+      wrapper.current.addEventListener('wheel', handleZoom); // HANDLE ZOOM
+    }
 
     return () => {
-      document.removeEventListener('mousedown', handleClickStart); // HANDLE CLICK
-      document.removeEventListener('mouseup', handleClickEnd); // HANDLE CLICK
+      wrapper?.current?.removeEventListener('mousedown', handleClickStart); // HANDLE CLICK
+      wrapper?.current?.removeEventListener('mouseup', handleClickEnd); // HANDLE CLICK
 
       document.removeEventListener('wheel', handleZoom); // HANDLE ZOOM
     };
@@ -38,7 +38,7 @@ export function ZoomSection() {
 
   return (
     <ComponentBox>
-      <MapWrapper>
+      <MapWrapper ref={wrapper}>
         <France style={{ transform: `scale(${zoom})` }} />
       </MapWrapper>
     </ComponentBox>
