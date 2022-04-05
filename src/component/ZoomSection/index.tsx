@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useState, useRef, WheelEvent } from 'react';
 import { ReactComponent as France } from 'assets/france1.svg';
 import { ComponentBox, MapWrapper } from './styles';
 
@@ -22,18 +22,10 @@ export function ZoomSection() {
     });
   };
 
-  useEffect(() => {
-    const handleZoom = (e: WheelEvent) => {
-      if (e.deltaY > 0) return setZoom((prev) => prev - 0.1);
-      return setZoom((prev) => prev + 0.1);
-    };
-
-    wrapper?.current?.addEventListener('wheel', handleZoom); // HANDLE ZOOM
-
-    return () => {
-      wrapper?.current?.removeEventListener('wheel', handleZoom); // HANDLE ZOOM
-    };
-  }, [isClicking]);
+  const handleZoom = (e: WheelEvent<HTMLDivElement>) => {
+    if (e.deltaY > 0) return setZoom((prev) => prev - 0.1);
+    return setZoom((prev) => prev + 0.1);
+  };
 
   return (
     <ComponentBox>
@@ -43,7 +35,8 @@ export function ZoomSection() {
         onMouseLeave={() => setIsHover(false)}
         onMouseDown={() => setIsClicking(true)}
         onMouseUp={() => setIsClicking(false)}
-        onMouseMove={handleMove}>
+        onMouseMove={handleMove}
+        onWheel={handleZoom}>
         <France
           style={{ transform: `scale(${zoom}) translate(${position[0]}px, ${position[1]}px)` }}
         />
