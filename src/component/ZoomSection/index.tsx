@@ -8,8 +8,9 @@ export function ZoomSection() {
   const [zoom, setZoom] = useState(1);
   const [position, setPosition] = useState<[number, number]>([0, 0]);
   const [isClicking, setIsClicking] = useState(false);
+  const [isHover, setIsHover] = useState(false);
 
-  window.onscroll = () => window.scrollTo(0, 0); // DISABLE SCROLL
+  window.onscroll = () => isHover && window.scrollTo(0, 0); // DISABLE SCROLL
 
   useEffect(() => {
     const handleClickStart = () => setIsClicking(true);
@@ -45,7 +46,10 @@ export function ZoomSection() {
 
   return (
     <ComponentBox>
-      <MapWrapper ref={wrapper}>
+      <MapWrapper
+        ref={wrapper}
+        onMouseEnter={() => setIsHover(true)}
+        onMouseLeave={() => setIsHover(false)}>
         <France
           style={{ transform: `scale(${zoom}) translate(${position[0]}px, ${position[1]}px)` }}
         />
