@@ -11,10 +11,6 @@ export const CssReset = createGlobalStyle`
     box-sizing: border-box;
     padding: 0;
     margin: 0;
-    color: ${Color.UtilityDark};
-    font-family: ${Font.Text};
-    font-size: ${FontSize.Regular};
-    font-weight: ${FontWeight.Regular};
 }
 
 html {
@@ -22,9 +18,11 @@ html {
 }
 
 body {
-    font-size: ${FontSize.Small};
-    scroll-behavior: smooth;
     background: ${Color.Background};
+    color: ${Color.UtilityDark};
+    font-family: ${Font.Text};
+    font-size: ${FontSize.Regular};
+    scroll-behavior: smooth;
 }
 
 a, button {
@@ -39,8 +37,6 @@ a, button {
 
 h1, h2, h3 {
     font-size: ${FontSize.Title};
+    font-weight: ${FontWeight.Bold}
 }
-
-/* THEME */
-
 `;

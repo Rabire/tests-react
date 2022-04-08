@@ -1,5 +1,4 @@
 import { CssReset, Theme } from 'styles/globals';
-// import { ReactComponent as France } from 'assets/france.svg';
 
 function App() {
   return (
