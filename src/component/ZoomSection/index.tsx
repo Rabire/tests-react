@@ -10,6 +10,23 @@ export function ZoomSection() {
   const [isClicking, setIsClicking] = useState(false);
   const [isHover, setIsHover] = useState(false);
 
+  console.log({ zoom, position });
+
+  const resetParams = () => {
+    setZoom(1);
+    setPosition([0, 0]);
+  };
+
+  const zoomOnRhone = () => {
+    setZoom(3.9);
+    setPosition([-110.6, -44.6]);
+  };
+
+  const zoomOnParis = () => {
+    setZoom(6.2);
+    setPosition([6.4, 141.4]);
+  };
+
   window.onscroll = () => isHover && window.scrollTo(0, 0); // DISABLE SCROLL TODO: find another way
 
   const handleMove = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
@@ -23,6 +40,8 @@ export function ZoomSection() {
   };
 
   const handleZoom = (e: WheelEvent<HTMLDivElement>) => {
+    if (zoom < 1) return setZoom(1);
+
     if (e.deltaY > 0) return setZoom((prev) => prev - 0.1);
     return setZoom((prev) => prev + 0.1);
   };
@@ -38,9 +57,22 @@ export function ZoomSection() {
         onMouseMove={handleMove}
         onWheel={handleZoom}>
         <France
-          style={{ transform: `scale(${zoom}) translate(${position[0]}px, ${position[1]}px)` }}
+          style={{
+            transform: `scale(${zoom}) translate(${position[0]}px, ${position[1]}px)`
+          }}
         />
       </MapWrapper>
+      <button type="button" onClick={resetParams}>
+        RESET
+      </button>
+
+      {/* WE CAN MAP IT */}
+      <button type="button" onClick={zoomOnRhone}>
+        Rhone
+      </button>
+      <button type="button" onClick={zoomOnParis}>
+        Paris
+      </button>
     </ComponentBox>
   );
 }
