@@ -23,8 +23,4 @@ export const MapWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-
-  svg {
-    /* transition: transform 300ms ease-in-out; */
-  }
 `;

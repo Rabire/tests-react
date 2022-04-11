@@ -10,7 +10,7 @@ export function ZoomSection() {
   const [isClicking, setIsClicking] = useState(false);
   const [isHover, setIsHover] = useState(false);
 
-  console.log({ zoom, position });
+  // console.log({ zoom, position });
 
   const resetParams = () => {
     setZoom(1);
@@ -33,8 +33,8 @@ export function ZoomSection() {
     if (!isClicking) return;
 
     setPosition((prev) => {
-      const newX = prev[0] + e.movementX / 5;
-      const newY = prev[1] + e.movementY / 5;
+      const newX = prev[0] + e.movementX; // / 2;
+      const newY = prev[1] + e.movementY; // / 2;
       return [newX, newY];
     });
   };
@@ -58,7 +58,8 @@ export function ZoomSection() {
         onWheel={handleZoom}>
         <France
           style={{
-            transform: `scale(${zoom}) translate(${position[0]}px, ${position[1]}px)`
+            transform: `scale(${zoom}) translate(${position[0]}px, ${position[1]}px)`,
+            transition: isClicking ? 'none' : 'transform 300ms ease-in-out'
           }}
         />
       </MapWrapper>
