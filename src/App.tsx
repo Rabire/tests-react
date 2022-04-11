@@ -3,6 +3,7 @@ import { ZoomSection } from 'component/ZoomSection';
 import { Hero } from 'component/Hero';
 import { Sections } from 'component/Sections';
 import { CardList } from 'component/CardList';
+import { AuthContextProvider } from 'contexts/Auth';
 import { CssReset, Theme } from 'styles/globals';
 
 function App() {
@@ -13,11 +14,13 @@ function App() {
       <CssReset />
       <Theme />
 
-      <ZoomSection />
+      <AuthContextProvider>
+        <ZoomSection />
 
-      <Hero />
+        <Hero />
 
-      <Sections />
+        <Sections />
+      </AuthContextProvider>
 
       <QueryClientProvider client={queryClient}>
         <CardList />

@@ -12,7 +12,7 @@ const defaultValues: Type = {
 
 export const AuthContext = createContext<Type>(defaultValues);
 
-export function CartContextProvider(children: ReactNode) {
+export function AuthContextProvider({ children }: { children: ReactNode }) {
   const [isAuth, setIsAuth] = useState(false);
 
   const value = useMemo(
