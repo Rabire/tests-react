@@ -1,5 +1,7 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import React, { useState, useRef, WheelEvent } from 'react';
 import { ReactComponent as France } from 'assets/france1.svg';
+import { exportAsImage } from 'utils/exportAsImage';
 import { ComponentBox, MapWrapper } from './styles';
 
 export function ZoomSection() {
@@ -63,6 +65,9 @@ export function ZoomSection() {
           }}
         />
       </MapWrapper>
+      <button type="button" onClick={() => exportAsImage(wrapper.current!, 'test')}>
+        DOWNLOAD
+      </button>
       <button type="button" onClick={resetParams}>
         RESET
       </button>
