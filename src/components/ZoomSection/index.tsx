@@ -57,7 +57,8 @@ export function ZoomSection() {
         onMouseDown={() => setIsClicking(true)}
         onMouseUp={() => setIsClicking(false)}
         onMouseMove={handleMove}
-        onWheel={handleZoom}>
+        onWheel={handleZoom}
+      >
         <France
           style={{
             transform: `scale(${zoom}) translate(${position[0]}px, ${position[1]}px)`,

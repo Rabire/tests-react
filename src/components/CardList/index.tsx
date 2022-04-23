@@ -1,5 +1,5 @@
 import { useQuery } from 'react-query';
-import { Card, CardType } from 'component/Card';
+import { Card, CardType } from 'components/Card';
 import { CardsList } from './styles';
 
 export function CardList() {

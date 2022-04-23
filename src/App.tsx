@@ -1,8 +1,8 @@
 import { QueryClientProvider, QueryClient } from 'react-query';
-import { ZoomSection } from 'component/ZoomSection';
-import { Hero } from 'component/Hero';
-import { Sections } from 'component/Sections';
-import { CardList } from 'component/CardList';
+import { ZoomSection } from 'components/ZoomSection';
+import { Hero } from 'components/Hero';
+import { Sections } from 'components/Sections';
+import { CardList } from 'components/CardList';
 import { AuthContextProvider } from 'contexts/Auth';
 import { CssReset, Theme } from 'styles/globals';
 
