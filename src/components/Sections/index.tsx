@@ -1,14 +1,21 @@
+import { usePersistentState } from 'hooks/usePersistentState';
 import { Container, Section, SectionGroup } from './styles';
 
 export function Sections() {
-  return (
-    <Container>
-      <Section style={{ height: 500 }} />
+  const [name, setName] = usePersistentState('name', 'Eric');
 
-      <SectionGroup>
-        <Section />
-        <Section />
-      </SectionGroup>
-    </Container>
+  return (
+    <>
+      <input type="text" onChange={(event) => setName(event.target.value)} value={name} />
+
+      <Container>
+        <Section style={{ height: 500 }} />
+
+        <SectionGroup>
+          <Section />
+          <Section />
+        </SectionGroup>
+      </Container>
+    </>
   );
 }
