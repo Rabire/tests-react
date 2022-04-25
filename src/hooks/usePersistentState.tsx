@@ -6,13 +6,9 @@ import { useState, useEffect } from 'react';
  * @returns [state, setState]
  */
 export const usePersistentState = <S,>(id: string, initialState: S) => {
-  const [state, setState] = useState<typeof initialState>(initialState);
+  const storedState: S | null = JSON.parse(localStorage.getItem(id) || 'null');
 
-  // update state if localStorage is already set
-  useEffect(() => {
-    const storedState = JSON.parse(localStorage.getItem(id) || 'null');
-    if (storedState && state !== storedState) setState(storedState);
-  }, []);
+  const [state, setState] = useState<typeof initialState>(storedState || initialState);
 
   useEffect(() => {
     localStorage.setItem(id, JSON.stringify(state));
