@@ -4,6 +4,7 @@ import { ZoomSection } from 'components/ZoomSection';
 import { Hero } from 'components/Hero';
 import { Sections } from 'components/Sections';
 import { CardList } from 'components/CardList';
+import { ButtonBottom } from 'components/ButtonBottom';
 import { AuthContextProvider } from 'contexts/Auth';
 import { CssReset, Theme } from 'styles/globals';
 import { Home } from 'page/home';
@@ -12,7 +13,8 @@ export const routes = [
   { path: 'zoom', element: <ZoomSection /> },
   { path: 'hero', element: <Hero /> },
   { path: 'sections', element: <Sections /> },
-  { path: 'card-list', element: <CardList /> }
+  { path: 'card-list', element: <CardList /> },
+  { path: 'button-bottom', element: <ButtonBottom /> }
 ];
 
 function App() {

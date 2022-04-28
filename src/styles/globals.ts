@@ -28,6 +28,7 @@ body {
 a, button {
     all: unset;
     cursor: pointer;
+    display: block;
 
     &:disabled {
         opacity: 0.7;
