@@ -5,6 +5,7 @@ import { Hero } from 'components/Hero';
 import { Sections } from 'components/Sections';
 import { CardList } from 'components/CardList';
 import { ButtonBottom } from 'components/ButtonBottom';
+import { DocteurMahboul } from 'components/DocteurMahboul';
 import { AuthContextProvider } from 'contexts/Auth';
 import { CssReset, Theme } from 'styles/globals';
 import { Home } from 'page/home';
@@ -14,7 +15,8 @@ export const routes = [
   { path: 'hero', element: <Hero /> },
   { path: 'sections', element: <Sections /> },
   { path: 'card-list', element: <CardList /> },
-  { path: 'button-bottom', element: <ButtonBottom /> }
+  { path: 'button-bottom', element: <ButtonBottom /> },
+  { path: 'docteur-maboul', element: <DocteurMahboul /> }
 ];
 
 function App() {
