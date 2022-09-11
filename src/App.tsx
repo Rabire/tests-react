@@ -6,6 +6,7 @@ import { Sections } from 'components/Sections';
 import { CardList } from 'components/CardList';
 import { ButtonBottom } from 'components/ButtonBottom';
 import { DocteurMahboul } from 'components/DocteurMahboul';
+import { TidyUp } from 'components/TidyUp';
 import { AuthContextProvider } from 'contexts/Auth';
 import { CssReset, Theme } from 'styles/globals';
 import { Home } from 'page/home';
@@ -16,7 +17,8 @@ export const routes = [
   { path: 'sections', element: <Sections /> },
   { path: 'card-list', element: <CardList /> },
   { path: 'button-bottom', element: <ButtonBottom /> },
-  { path: 'docteur-maboul', element: <DocteurMahboul /> }
+  { path: 'docteur-maboul', element: <DocteurMahboul /> },
+  { path: 'tidy-up', element: <TidyUp /> }
 ];
 
 function App() {

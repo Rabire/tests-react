@@ -4,6 +4,7 @@ export type CardType = {
   id: string;
   author: string;
   download_url: string;
+  position?: string;
 };
 
 type Props = {
