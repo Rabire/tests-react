@@ -1,12 +1,5 @@
 import styled from 'styled-components';
 
-export const Button = styled.button`
-  border-radius: 1rem;
-  background: dodgerblue;
-  padding: 2rem;
-  color: white;
-`;
-
 export const CardsList = styled.div`
   background: lightseagreen;
   margin: 3rem auto;

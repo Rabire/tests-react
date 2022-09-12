@@ -1,54 +1,20 @@
-import { useState, useRef } from 'react';
 import { CARDS } from './content';
-import { CardsList, Card, Button } from './styles';
+import useDraggable from './hook';
+import { CardsList, Card } from './styles';
 
 export function TidyUp() {
-  const [enableSort, setEnableSort] = useState(false);
-  const [cards, setCards] = useState(CARDS);
-
-  const dragItem = useRef<number>(-1);
-  const dragOverItem = useRef<number>(-1);
-
-  const handleDrag = () => {
-    const itemToEdit = cards[dragItem.current];
-    const itemToReplace = cards[dragOverItem.current];
-
-    const isAfter = itemToEdit.position < itemToReplace.position;
-
-    const newPosition = isAfter
-      ? Number((itemToReplace.position + 0.01).toFixed(2))
-      : Number((itemToReplace.position - 0.01).toFixed(2));
-
-    setCards([...cards.filter((i) => i !== itemToEdit), { ...itemToEdit, position: newPosition }]);
-  };
+  const { dragProps, list } = useDraggable(CARDS);
 
   return (
-    <>
-      <Button type="button" onClick={() => setEnableSort((prev) => !prev)}>
-        {enableSort ? 'Fini !' : 'Ordonner'}
-      </Button>
-
-      <CardsList>
-        {cards
-          .sort((a, b) => (a.position > b.position ? 1 : -1))
-          .map((card, index) => (
-            <Card
-              key={card.id}
-              draggable={enableSort}
-              className={enableSort ? 'draggable' : ''}
-              onDragStart={() => {
-                dragItem.current = index;
-              }}
-              onDragEnter={() => {
-                dragOverItem.current = index;
-              }}
-              onDragEnd={handleDrag}
-              onDragOver={(e) => e.preventDefault()}
-            >
-              <h1>{card.author}</h1> {card.position}
-            </Card>
-          ))}
-      </CardsList>
-    </>
+    <CardsList>
+      {list
+        .sort((a, b) => (a.position > b.position ? 1 : -1))
+        .map((card, index) => (
+          // eslint-disable-next-line react/jsx-props-no-spreading
+          <Card key={card.id} {...dragProps(index)}>
+            <h1>{card.author}</h1> {card.position}
+          </Card>
+        ))}
+    </CardsList>
   );
 }
