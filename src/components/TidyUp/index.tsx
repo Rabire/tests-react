@@ -18,3 +18,8 @@ export function TidyUp() {
     </CardsList>
   );
 }
+
+/*
+v2 which re set all elements
+use https://www.npmjs.com/package/array-move
+*/
