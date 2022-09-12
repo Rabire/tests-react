@@ -1,63 +1,54 @@
-import { SortableContainer, SortableElement, SortEndHandler } from 'react-sortable-hoc';
-import { Card, CardType } from 'components/Card';
-import { CardsList } from './styles';
+import { useState, useRef } from 'react';
+import { CARDS, alphaNumeric } from './content';
+import { CardsList, Card, Button } from './styles';
 
 export function TidyUp() {
-  const cards: CardType[] = [
-    {
-      id: '0',
-      author: 'Djamel Kouji',
-      download_url: 'https://picsum.photos/id/0/5616/3744',
-      position: 'a'
-    },
-    {
-      id: '1002',
-      author: 'NASA',
-      download_url: 'https://picsum.photos/id/1002/4312/2868',
-      position: 'b'
-    },
-    {
-      id: '1003',
-      author: 'E+N Photographies',
-      download_url: 'https://picsum.photos/id/1003/1181/1772',
-      position: 'c'
-    },
-    {
-      id: '1004',
-      author: 'Greg Rakozy',
-      download_url: 'https://picsum.photos/id/1004/5616/3744',
-      position: 'd'
-    }
-  ];
+  const [enableSort, setEnableSort] = useState(false);
+  const [cards, setCards] = useState(CARDS);
 
-  // eslint-disable-next-line react/no-unused-prop-types
-  const SortableItem = SortableElement(({ value }: { value: CardType }) => (
-    <Card card={value} isLoading={false} />
-  ));
+  const dragItem = useRef<any>(null);
+  const dragOverItem = useRef<any>(null);
 
-  // eslint-disable-next-line react/no-unused-prop-types
-  const SortableList = SortableContainer(({ items }: { items: CardType[] }) => {
-    return (
-      <CardsList>
-        {items.map((value, index) => (
-          <SortableItem key={value.id} index={index} value={value} />
-        ))}
-      </CardsList>
-    );
-  });
-  // .sort((a, b) => a.position - b.position)
+  const items = cards.sort((a, b) => (a.position > b.position ? 1 : -1));
 
-  const onSortEnd = ({ newIndex }: { newIndex: number }) => {
-    console.log(newIndex);
+  const handleDrag = () => {
+    const itemToEdit = cards[dragItem.current];
+    const itemToReplace = cards[dragOverItem.current];
+
+    const isAfter = itemToEdit.position < itemToReplace.position;
+
+    const newPosition = isAfter
+      ? Number((itemToReplace.position + 0.01).toFixed(2))
+      : Number((itemToReplace.position - 0.01).toFixed(2));
+
+    setCards([...cards.filter((i) => i !== itemToEdit), { ...itemToEdit, position: newPosition }]);
   };
 
-  console.log('--');
-  const test = ['bt', 'e', 'v', 'c'];
-  console.log(test);
+  return (
+    <>
+      <Button type="button" onClick={() => setEnableSort((prev) => !prev)}>
+        {enableSort ? 'Fini !' : 'Ordonner'}
+      </Button>
 
-  test.sort();
-  console.log(test);
-  console.log(test[1]);
-
-  return <SortableList items={cards} onSortEnd={onSortEnd} />;
+      <CardsList>
+        {items.map((card, index) => (
+          <Card
+            key={card.id}
+            draggable={enableSort}
+            className={enableSort ? 'draggable' : ''}
+            onDragStart={() => {
+              dragItem.current = index;
+            }}
+            onDragEnter={() => {
+              dragOverItem.current = index;
+            }}
+            onDragEnd={handleDrag}
+            onDragOver={(e) => e.preventDefault()}
+          >
+            <h1>{card.author}</h1> {card.position}
+          </Card>
+        ))}
+      </CardsList>
+    </>
+  );
 }
