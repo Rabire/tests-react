@@ -31,5 +31,3 @@ export const CARDS: SortableCardType[] = [
     position: 2
   }
 ];
-
-export const alphaNumeric = '0123456789abcdefghijklmnopqrstuvwxyz'.split('');

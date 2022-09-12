@@ -1,15 +1,13 @@
 import { useState, useRef } from 'react';
-import { CARDS, alphaNumeric } from './content';
+import { CARDS } from './content';
 import { CardsList, Card, Button } from './styles';
 
 export function TidyUp() {
   const [enableSort, setEnableSort] = useState(false);
   const [cards, setCards] = useState(CARDS);
 
-  const dragItem = useRef<any>(null);
-  const dragOverItem = useRef<any>(null);
-
-  const items = cards.sort((a, b) => (a.position > b.position ? 1 : -1));
+  const dragItem = useRef<number>(-1);
+  const dragOverItem = useRef<number>(-1);
 
   const handleDrag = () => {
     const itemToEdit = cards[dragItem.current];
@@ -31,23 +29,25 @@ export function TidyUp() {
       </Button>
 
       <CardsList>
-        {items.map((card, index) => (
-          <Card
-            key={card.id}
-            draggable={enableSort}
-            className={enableSort ? 'draggable' : ''}
-            onDragStart={() => {
-              dragItem.current = index;
-            }}
-            onDragEnter={() => {
-              dragOverItem.current = index;
-            }}
-            onDragEnd={handleDrag}
-            onDragOver={(e) => e.preventDefault()}
-          >
-            <h1>{card.author}</h1> {card.position}
-          </Card>
-        ))}
+        {cards
+          .sort((a, b) => (a.position > b.position ? 1 : -1))
+          .map((card, index) => (
+            <Card
+              key={card.id}
+              draggable={enableSort}
+              className={enableSort ? 'draggable' : ''}
+              onDragStart={() => {
+                dragItem.current = index;
+              }}
+              onDragEnter={() => {
+                dragOverItem.current = index;
+              }}
+              onDragEnd={handleDrag}
+              onDragOver={(e) => e.preventDefault()}
+            >
+              <h1>{card.author}</h1> {card.position}
+            </Card>
+          ))}
       </CardsList>
     </>
   );
