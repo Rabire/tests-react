@@ -12,6 +12,8 @@ const useDraggable = <T>(list: SortableElement<T>[], enableSort = true) => {
     const itemToEdit = items[dragItem.current];
     const itemToReplace = items[dragOverItem.current];
 
+    if (dragItem.current === dragOverItem.current) return;
+
     const isAfter = itemToEdit.position < itemToReplace.position;
 
     const newPosition = isAfter
