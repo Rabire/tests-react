@@ -10,6 +10,7 @@ import { TidyUp } from 'components/TidyUp';
 import { AuthContextProvider } from 'contexts/Auth';
 import { CssReset, Theme } from 'styles/globals';
 import { Home } from 'page/home';
+import { MMFTitle } from 'components/Title';
 
 export const routes = [
   { path: 'zoom', element: <ZoomSection /> },
@@ -18,7 +19,8 @@ export const routes = [
   { path: 'card-list', element: <CardList /> },
   { path: 'button-bottom', element: <ButtonBottom /> },
   { path: 'docteur-maboul', element: <DocteurMahboul /> },
-  { path: 'tidy-up', element: <TidyUp /> }
+  { path: 'tidy-up', element: <TidyUp /> },
+  { path: 'mmf-title', element: <MMFTitle /> }
 ];
 
 function App() {
